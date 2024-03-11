@@ -1,17 +1,15 @@
-import WorkElement from './WorkElement';
-import NoirMobileImg from '../assets/images/works/noir.jpg';
-import NoirDesktopImg from '../assets/images/works/noir-desktop.jpg';
-import LassoMobileImg from '../assets/images/works/lasso.jpg';
-import LassoDesktopImg from '../assets/images/works/lasso-desktop.jpg';
-import CasaECorMobileImg from '../assets/images/works/casa-e-cor.jpg';
-import CasaECorDesktopImg from '../assets/images/works/casa-e-cor-desktop.jpg';
-import AlugaFacilMobileImg from '../assets/images/works/aluga-facil.jpg';
-import AlugaFacilDesktopImg from '../assets/images/works/aluga-facil-desktop.jpg';
-
 import Slider from 'react-slick';
-import { i18n } from '../locale/i18n';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import shopDesktopImg from '../assets/images/works/Screenshot 2023-11-14 104340.png';
+import plantDesktopImg from '../assets/images/works/Screenshot 2024-03-06 200034.png';
+import tofuDesktopImg from '../assets/images/works/Screenshot 2024-03-06 201510.png';
+import plantMobileImg from '../assets/images/works/WhatsApp Image 2024-03-06 at 20.48.00_2722a517.jpg';
+import tofuMobileImg from '../assets/images/works/WhatsApp Image 2024-03-06 at 20.56.54_2631ae1e.jpg';
+import NoirDesktopImg from '../assets/images/works/noir-desktop.jpg';
+import NoirMobileImg from '../assets/images/works/noir.jpg';
+import { i18n } from '../locale/i18n';
+import WorkElement from './WorkElement';
 
 const Works = () => {
   var settings = {
@@ -39,24 +37,24 @@ const Works = () => {
             <Slider {...settings}>
               <div>
                 <WorkElement
-                  img={CasaECorMobileImg}
+                  img={plantMobileImg}
                   alt={i18n.t('worksSection.casaECor.alt')}
                   name={`${i18n.t('worksSection.casaECor.name')}`}
                   description={`${i18n.t('worksSection.casaECor.description')}`}
-                  tools='HTML5, LESS, JavaScript'
-                  link='https://casa-e-cor.vercel.app/'
-                  code='https://github.com/tiagocreator/casa-e-cor'
+                  tools='React, Express, Mongo db'
+                  link='https://plant-selling-mern-xf49.vercel.app/'
+                  code='https://github.com/kushagr432/plant-selling-mern'
                 />
               </div>
               <div>
                 <WorkElement
-                  img={LassoMobileImg}
+                  img={tofuMobileImg}
                   alt={i18n.t('worksSection.lasso.alt')}
                   name={`${i18n.t('worksSection.lasso.name')}`}
                   description={`${i18n.t('worksSection.lasso.description')}`}
-                  tools='React, Redux, Sass'
-                  link='https://lasso-ecommerce.up.railway.app/'
-                  code='https://github.com/tiagocreator/lasso-ecommerce'
+                  tools='React, Figma, Taiwind , MUI'
+                  link='https://tofu-app.vercel.app/'
+                  code=''
                 />
               </div>
               <div>
@@ -67,18 +65,18 @@ const Works = () => {
                   description={`${i18n.t('worksSection.noir.description')}`}
                   tools='HTML5, CSS3, JavaScript'
                   link='https://noir-barbearia.vercel.app/'
-                  code='https://github.com/tiagocreator/noir-barbearia'
+                  code=''
                 />
               </div>
               <div>
                 <WorkElement
-                  img={AlugaFacilMobileImg}
+                  img={shopDesktopImg}
                   alt={i18n.t('worksSection.alugaFacil.alt')}
                   name={`${i18n.t('worksSection.alugaFacil.name')}`}
                   description={`${i18n.t('worksSection.alugaFacil.description')}`}
-                  tools='React, TypeScript, Sass'
-                  link='https://aluga-facil-ten.netlify.app/'
-                  code='https://github.com/tiagocreator/aluga-facil'
+                  tools='React, Spring Boot, My SQL'
+                  link=''
+                  code='https://github.com/kushagr432/shopX'
                 />
               </div>
             </Slider>
@@ -86,22 +84,22 @@ const Works = () => {
           {/* Desktop */}
           <div className='hidden md:flex flex-col'>
             <WorkElement
-              img={CasaECorDesktopImg}
+              img={plantDesktopImg}
               alt={i18n.t('worksSection.casaECor.alt')}
               name={`${i18n.t('worksSection.casaECor.name')}`}
               description={`${i18n.t('worksSection.casaECor.description')}`}
-              tools='HTML5, LESS, JavaScript'
-              link='https://casa-e-cor.vercel.app/'
-              code='https://github.com/tiagocreator/casa-e-cor'
+              tools='React, Express, Mongo db'
+              link='https://plant-selling-mern-xf49.vercel.app/'
+              code='https://github.com/kushagr432/plant-selling-mern'
             />
             <WorkElement
-              img={LassoDesktopImg}
+              img={tofuDesktopImg}
               alt={i18n.t('worksSection.lasso.alt')}
               name={`${i18n.t('worksSection.lasso.name')}`}
               description={`${i18n.t('worksSection.lasso.description')}`}
-              tools='React, Redux, Sass'
-              link='https://lasso-ecommerce.up.railway.app/'
-              code='https://github.com/tiagocreator/lasso-ecommerce'
+              tools='React, Figma, Taiwind , MUI'
+              link='https://tofu-app.vercel.app/'
+              code=''
               reverse
             />
             <WorkElement
@@ -111,16 +109,16 @@ const Works = () => {
               description={`${i18n.t('worksSection.noir.description')}`}
               tools='HTML5, CSS3, JavaScript'
               link='https://noir-barbearia.vercel.app/'
-              code='https://github.com/tiagocreator/noir-barbearia'
+              code=''
             />
             <WorkElement
-              img={AlugaFacilDesktopImg}
+              img={shopDesktopImg}
               alt={i18n.t('worksSection.alugaFacil.alt')}
               name={`${i18n.t('worksSection.alugaFacil.name')}`}
               description={`${i18n.t('worksSection.alugaFacil.description')}`}
-              tools='React, TypeScript, Sass'
-              link='https://aluga-facil-ten.netlify.app/'
-              code='https://github.com/tiagocreator/aluga-facil'
+              tools='React, Spring Boot, My SQL'
+              link=''
+              code='https://github.com/kushagr432/shopX'
               reverse
             />
           </div>

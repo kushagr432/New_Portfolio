@@ -1,31 +1,35 @@
+import React, { useRef } from 'react';
+import toast from 'react-hot-toast';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { i18n } from '../locale/i18n';
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import toast from 'react-hot-toast';
 
 const Contact = () => {
   const form = useRef();
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        form.current,
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
-      )
-      .then(
-        () => {
-          e.target.reset();
-          toast.success(i18n.t('toast.contact.success'), { duration: 5000 });
-        },
-        (error) => {
-          toast.error(i18n.t('toast.contact.error'), { duration: 5000 });
-        },
-      );
+    const formData = new FormData(form.current);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mayrbnlp', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json',
+        }
+      });
+
+      if (response.ok) {
+        form.current.reset();
+        toast.success(i18n.t('toast.contact.success'), { duration: 5000 });
+      } else {
+        toast.error(i18n.t('toast.contact.error'), { duration: 5000 });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error(i18n.t('toast.contact.error'), { duration: 5000 });
+    }
   };
 
   return (

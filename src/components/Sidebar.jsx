@@ -1,19 +1,18 @@
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { HiOutlineMail } from 'react-icons/hi';
-import { FcDocument } from 'react-icons/fc';
-import { i18n } from '../locale/i18n';
-import ptResume from '../assets/docs/tiago-leite-resume-pt.pdf';
-import enResume from '../assets/docs/tiago-leite-resume-en.pdf';
 import toast from 'react-hot-toast';
+import { BsFillPersonLinesFill } from 'react-icons/bs';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FcDocument } from 'react-icons/fc';
+import { HiOutlineMail } from 'react-icons/hi';
+import { default as enResume, default as ptResume } from '../assets/docs/resume-kushagr.pdf';
+import { i18n } from '../locale/i18n';
 
 const CURRENT_KEY = localStorage.getItem('i18nextLng');
 
 const Sidebar = () => {
   const social = {
-    linkedin: 'https://www.linkedin.com/in/tiagocreator/',
-    github: 'https://github.com/tiagocreator',
-    email: 'mailto:contato@tiagocreator.com',
+    linkedin: 'https://www.linkedin.com/in/kushagr-jain-40502621b/',
+    github: 'https://github.com/kushagr432',
+    email: 'Kushagr998@gmail.com',
   };
 
   const resumeLink = CURRENT_KEY === 'pt-BR' ? ptResume : enResume;

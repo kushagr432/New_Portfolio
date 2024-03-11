@@ -11,12 +11,12 @@ const content = {
         },
         resume: {
           name: 'Currículo',
-          downloadName: 'tiago-leite-currículo',
+          downloadName: 'kushagr-jain-currículo',
           downloadMessage: 'Baixando currículo',
         },
       },
       homeSection: {
-        intro: 'Oi, eu sou Tiago Leite.',
+        intro: 'Oi, eu sou Kushagr Jain.',
         welcome: 'Bem vindos ao meu portfolio',
         smallDescription: 'Eu sou',
         animatedTexts: {
@@ -102,3 +102,4 @@ const content = {
 };
 
 export { content };
+

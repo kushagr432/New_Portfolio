@@ -11,23 +11,23 @@ const content = {
         },
         resume: {
           name: 'Resume',
-          downloadName: 'tiago-leite-resume',
+          downloadName: 'kushagr-jain-resume',
           downloadMessage: 'Downloading resume',
         },
       },
       homeSection: {
-        intro: "Hello, I'm Tiago Leite.",
+        intro: "Hello, I'm Kushagr Jain.",
         welcome: 'Welcome to my portfolio',
         smallDescription: "I'm a",
         animatedTexts: {
           textOne: 'front-end developer',
           textTwo: 'web developer',
-          textThree: 'CSS wizard',
+          textThree: 'Mern Stack Developer',
           textFour: 'React developer',
           textFive: 'JavaScript ninja',
           textSix: 'UI engineer',
         },
-        description: "I'm a self-taught and motivated front-end developer based in Brazil.",
+        description: "I'm a self-taught and motivated front-end developer based in India.",
         buttons: {
           work: 'View Work',
           hire: 'Contact',
@@ -46,7 +46,7 @@ const content = {
       worksSection: {
         sectionName: 'Works',
         intro:
-          'Amazing Front-End Experiences: Merging Design and Functionality. Here are some examples of my work.',
+          'Amazing Front-End and Back-End Experiences: Merging Design and Functionality. Here are some examples of my work.',
         workElement: {
           tools: 'Tools',
           buttons: {
@@ -56,10 +56,10 @@ const content = {
           featured: 'Featured Project',
         },
         alugaFacil: {
-          name: 'Aluga Fácil',
+          name: 'Shop X',
           description:
-            'Car rental business website with 6 pages built with a modern and responsive interface for searching, comparing, and reserving cars.',
-          alt: 'aluga fácil car rental website',
+            'Revolutionize online shopping with our Spring Boot React MySQL e-commerce platform. Seamlessly blending backend power with frontend finesse for a superior shopping journey',
+          alt: 'E-Commerce website',
         },
         noir: {
           name: 'Noir',
@@ -68,16 +68,16 @@ const content = {
           alt: 'noir barbershop website',
         },
         lasso: {
-          name: 'Lasso',
+          name: 'Tofu Landing Page',
           description:
-            'Complete e-commerce where users can create an account and log in, add products to a cart, shop, filter products by category, name, and brand, see the order list, and much more.',
-          alt: 'lasso online store',
+            'Cutting-edge landing page for TOFU, an AR/VR innovator. Crafted with React for immersive user experiences. Explore our visionary technology and services',
+          alt: 'Landing Page Tofu',
         },
         casaECor: {
-          name: 'Casa&Cor',
+          name: 'Plant Selling Website',
           description:
-            'An elegant renovation and decoration website with an intuitive, harmonious, and responsive design. Features a visual gallery, descriptive information, and dark mode.',
-          alt: 'renovation and decoration website',
+            'Dynamic MERN-based plant selling platform. Effortlessly manage listings, authentication, and checkout. MongoDB, Express.js, React.js, and Node.js power seamless user interactions.',
+          alt: 'plant selling website',
         },
       },
       contactSection: {
@@ -102,3 +102,4 @@ const content = {
 };
 
 export { content };
+

@@ -1,29 +1,27 @@
-import Link from 'react-scroll/modules/components/Link';
 import toast from 'react-hot-toast';
+import Link from 'react-scroll/modules/components/Link';
 
-import { i18n } from '../locale/i18n';
 import { TypeAnimation } from 'react-type-animation';
+import { i18n } from '../locale/i18n';
 
 import Stars from './Stars';
 
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { HiOutlineMail } from 'react-icons/hi';
-import { HiArrowNarrowRight } from 'react-icons/hi';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FcDocument } from 'react-icons/fc';
+import { HiArrowNarrowRight, HiOutlineMail } from 'react-icons/hi';
 
-import ptResume from '../assets/docs/tiago-leite-resume-pt.pdf';
-import enResume from '../assets/docs/tiago-leite-resume-en.pdf';
-import ProfilePicture from '../assets/images/profile/me.jpg';
+import { default as enResume, default as ptResume } from '../assets/docs/resume-kushagr.pdf';
+import ProfilePicture from '../assets/images/profile/me.jpg.jpg';
 
 // Language settings
 const CURRENT_KEY = localStorage.getItem('i18nextLng');
 
 const Home = () => {
   const social = {
-    linkedin: 'https://www.linkedin.com/in/tiagocreator/',
-    github: 'https://github.com/tiagocreator',
-    email: 'mailto:contato@tiagocreator.com',
+    linkedin: 'https://www.linkedin.com/in/kushagr-jain-40502621b/',
+    github: 'https://github.com/kushagr432',
+    email: 'kushagr998@gmail.com',
   };
 
   const resumeLink = CURRENT_KEY === 'pt-BR' ? ptResume : enResume;

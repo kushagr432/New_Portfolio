@@ -1,19 +1,18 @@
-import { useState, Fragment } from 'react';
-import { Link } from 'react-scroll';
 import { Menu, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import toast from 'react-hot-toast';
+import { Link } from 'react-scroll';
 import { i18n } from '../locale/i18n';
 import Sidebar from './Sidebar';
-import toast from 'react-hot-toast';
 
-import { FaBars, FaTimes, FaGithub, FaLinkedin, FaExchangeAlt } from 'react-icons/fa';
-import { BsFillPersonLinesFill, BsChevronDown } from 'react-icons/bs';
-import { HiOutlineMail } from 'react-icons/hi';
+import { BsChevronDown, BsFillPersonLinesFill } from 'react-icons/bs';
+import { FaBars, FaExchangeAlt, FaGithub, FaLinkedin, FaTimes } from 'react-icons/fa';
 import { FcDocument } from 'react-icons/fc';
+import { HiOutlineMail } from 'react-icons/hi';
 
-import ptResume from '../assets/docs/tiago-leite-resume-pt.pdf';
-import enResume from '../assets/docs/tiago-leite-resume-en.pdf';
-import Brackets from '../assets/images/logo/brackets-dark.png';
 import '../../node_modules/flag-icons/css/flag-icons.min.css';
+import { default as enResume, default as ptResume } from '../assets/docs/resume-kushagr.pdf';
+import Brackets from '../assets/images/logo/brackets-dark.png';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -34,9 +33,9 @@ const Navbar = () => {
   };
 
   const social = {
-    linkedin: 'https://www.linkedin.com/in/tiagocreator/',
-    github: 'https://github.com/tiagocreator',
-    email: 'mailto:contato@tiagocreator.com',
+    linkedin: 'https://www.linkedin.com/in/kushagr-jain-40502621b/',
+    github: 'https://github.com/kushagr432',
+    email: 'kushagr998@gmail.com',
   };
 
   const resumeLink = CURRENT_KEY === 'pt-BR' ? ptResume : enResume;
@@ -57,7 +56,7 @@ const Navbar = () => {
             src={Brackets}
             alt='logo'
           />
-          <h1 className='text-xl 2xl:text-2xl ml-4 font-bold'>Tiago Leite</h1>
+          <h1 className='text-xl 2xl:text-2xl ml-4 font-bold'>Kushagr Jain</h1>
         </div>
       </Link>
 
@@ -179,7 +178,7 @@ const Navbar = () => {
                           'w-full text-left block px-4 py-2 text-sm',
                         )}
                         onClick={changeLocale}>
-                        <span className='fi fi-br mr-2'></span>Português
+                        <span className='fi fi-br mr-2'></span>Hindi
                       </button>
                     )}
                   </Menu.Item>

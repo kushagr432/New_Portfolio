@@ -1,23 +1,23 @@
 import SkillCard from './SkillCard';
 
-import {
-  SiTailwindcss,
-  SiFirebase,
-  SiReact,
-  SiFigma,
-  SiJavascript,
-  SiTypescript,
-  SiHtml5,
-  SiCss3,
-  SiSass,
-  SiChakraui,
-  SiJest,
-} from 'react-icons/si';
 import { BsPlusLg, BsServer } from 'react-icons/bs';
 import { HiMinus } from 'react-icons/hi';
+import {
+  SiChakraui,
+  SiCss3,
+  SiExpress,
+  SiFirebase,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiReact,
+  SiSass,
+  SiTailwindcss,
+  SiTypescript
+} from 'react-icons/si';
 
-import { i18n } from '../locale/i18n';
 import { useState } from 'react';
+import { i18n } from '../locale/i18n';
 
 const Skills = () => {
   const [active, setActive] = useState(false);
@@ -39,13 +39,14 @@ const Skills = () => {
           <SkillCard color='#146BBC' icon={SiTypescript} name='TypeScript' />
           <SkillCard color='#DC4A29' icon={SiHtml5} name='HTML5' />
           <SkillCard color='#376FB4' icon={SiCss3} name='CSS3' />
-          <SkillCard color='#62CA80' icon={SiFigma} name='Figma' />
+          <SkillCard color='#954058' icon={SiExpress} name='Express' active={active} />
+          <SkillCard color='#00FF00' icon={SiMongodb} name='Mongo db' />
           <SkillCard color='#C76494' icon={SiSass} name='Sass' active={active} />
           <SkillCard color='#65CBCD' icon={SiChakraui} name='Chakra UI' active={active} />
           <SkillCard color='#36B7F0' icon={SiTailwindcss} name='Tailwind' active={active} />
           <SkillCard color='#EE800F' icon={SiFirebase} name='Firebase' active={active} />
           <SkillCard color='#69DDB3' icon={BsServer} name='Restful API' active={active} />
-          <SkillCard color='#954058' icon={SiJest} name='Jest' active={active} />
+        
         </div>
         <button
           className='sm:hidden w-36 h-11 flex justify-center items-center mx-auto rounded bg-transparent border-2 hover:text-white active:text-white hover:bg-theme-blue-50 active:bg-theme-blue-50 hover:border-theme-blue-50 active:border-theme-blue-50 duration-200 group font-medium'
