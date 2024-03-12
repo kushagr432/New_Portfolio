@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Meu Portfolio
 
 
@@ -39,3 +40,7 @@ Distribuido sobre a Licença Apache Versão 2.0 (Apache 2.0), para saber mais le
 ---
 
 ### :computer: [Link do Meu Portfolio](https://www.tiagocreator.com/)
+=======
+# New_Portfolio
+This is my E-portfolio
+>>>>>>> origin/main
