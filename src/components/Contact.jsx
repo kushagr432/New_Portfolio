@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import toast from 'react-hot-toast';
 import { RiSendPlaneFill } from 'react-icons/ri';
-import { i18n } from '../locale/i18n';
+import { FiMail, FiLinkedin } from 'react-icons/fi';
 
 const Contact = () => {
   const form = useRef();
@@ -16,58 +16,98 @@ const Contact = () => {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json',
-        }
+          Accept: 'application/json',
+        },
       });
 
       if (response.ok) {
         form.current.reset();
-        toast.success(i18n.t('toast.contact.success'), { duration: 5000 });
+        toast.success("Message sent! I'll get back to you within 24h.", { duration: 5000 });
       } else {
-        toast.error(i18n.t('toast.contact.error'), { duration: 5000 });
+        toast.error('Something went wrong. Please try again.', { duration: 5000 });
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error(i18n.t('toast.contact.error'), { duration: 5000 });
+      toast.error('Something went wrong. Please try again.', { duration: 5000 });
     }
   };
 
   return (
-    <section className='w-full pb-5 md:pb-9 pt-12 md:pt-24' name='contact'>
-      <div className='max-w-[900px] mx-auto px-8'>
-        <h1 className='font-medium text-xl 2xl:text-2xl border-b-4 inline-block border-theme-white mb-4 pb-1'>
-          {i18n.t('contactSection.sectionName')}
-        </h1>
-        <p className='text-base 2xl:text-lg'>{i18n.t('contactSection.intro')}</p>
-        <form
-          className='flex flex-col w-full max-w-[600px] mx-auto pt-12'
-          ref={form}
-          onSubmit={sendEmail}>
-          <input
-            className='p-2 2xl:p-2.5 rounded-sm bg-theme-white text-theme-black text-lg outline-none'
-            type='text'
-            placeholder={`${i18n.t('contactSection.placeholders.placeholderName')}`}
-            name='user_name'
-            required
-          />
-          <input
-            className='p-2 2xl:p-2.5 my-3 md:my-4 rounded-sm bg-theme-white text-theme-black text-lg outline-none'
-            type='email'
-            placeholder='Email'
-            name='user_email'
-            required></input>
-          <textarea
-            className='rounded-sm bg-theme-white p-2 2xl:p-4 text-theme-black text-lg outline-none'
-            name='message'
-            placeholder={`${i18n.t('contactSection.placeholders.placeholderMessage')}`}
-            rows='6'
-            required></textarea>
-          <button
-            type='submit'
-            className='h-12 md:h-auto py-[4px] 2xl:py-1.5 px-3 flex items-center justify-center cursor-pointer hover:text-white active:text-white duration-200 bg-theme-blue-50 hover:bg-theme-blue-100 active:bg-theme-blue-100 rounded text-lg mt-3 md:mt-5 mx-auto font-medium'>
-            {i18n.t('contactSection.button')} <RiSendPlaneFill className='ml-1' />
-          </button>
-        </form>
+    <section className='w-full pt-20 md:pt-28 pb-16 md:pb-24' name='contact'>
+      <div className='max-w-[980px] mx-auto px-6 md:px-8'>
+        <p className='text-accent text-xs font-semibold tracking-widest uppercase mb-2'>Get In Touch</p>
+        <h2 className='text-2xl md:text-3xl font-bold text-theme-white mb-3'>Contact Me</h2>
+        <p className='text-theme-white/55 text-base mb-10 max-w-xl leading-relaxed'>
+          Have a project in mind or want a free website audit? Fill out the form below and I'll
+          get back to you within 24 hours.
+        </p>
+
+        <div className='grid grid-cols-1 md:grid-cols-[1fr_360px] gap-8 md:gap-12'>
+          {/* Form */}
+          <form
+            className='flex flex-col gap-4'
+            ref={form}
+            onSubmit={sendEmail}>
+            <input
+              className='px-4 py-3 rounded-lg bg-white/[0.06] border border-white/10 text-theme-white text-sm placeholder-white/30 outline-none focus:border-accent/60 duration-200'
+              type='text'
+              placeholder='Your name'
+              name='user_name'
+              required
+            />
+            <input
+              className='px-4 py-3 rounded-lg bg-white/[0.06] border border-white/10 text-theme-white text-sm placeholder-white/30 outline-none focus:border-accent/60 duration-200'
+              type='email'
+              placeholder='Email address'
+              name='user_email'
+              required
+            />
+            <textarea
+              className='px-4 py-3 rounded-lg bg-white/[0.06] border border-white/10 text-theme-white text-sm placeholder-white/30 outline-none focus:border-accent/60 duration-200 resize-none'
+              name='message'
+              placeholder='Tell me about your project...'
+              rows='5'
+              required
+            />
+            <button
+              type='submit'
+              className='h-12 px-6 flex items-center justify-center gap-2 cursor-pointer bg-accent hover:bg-accent-dark text-white duration-200 rounded-lg text-sm font-semibold w-full sm:w-auto self-start'>
+              Send Message <RiSendPlaneFill size={15} />
+            </button>
+          </form>
+
+          {/* Side info */}
+          <div className='flex flex-col gap-4'>
+            <div className='bg-white/[0.04] border border-white/10 rounded-xl p-5'>
+              <p className='text-theme-white/45 text-xs font-semibold uppercase tracking-widest mb-3'>
+                Or reach me directly
+              </p>
+              <div className='space-y-3'>
+                <a
+                  href='mailto:kushagr998@gmail.com'
+                  className='flex items-center gap-3 text-theme-white/70 hover:text-accent duration-200 text-sm'>
+                  <FiMail size={16} className='text-accent' />
+                  kushagr998@gmail.com
+                </a>
+                <a
+                  href='https://www.linkedin.com/in/kushagr-jain-40502621b/'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='flex items-center gap-3 text-theme-white/70 hover:text-accent duration-200 text-sm'>
+                  <FiLinkedin size={16} className='text-accent' />
+                  linkedin.com/in/kushagr-jain
+                </a>
+              </div>
+            </div>
+            <div className='bg-accent/[0.06] border border-accent/20 rounded-xl p-5'>
+              <p className='text-accent font-semibold text-sm mb-1'>Free Website Audit</p>
+              <p className='text-theme-white/60 text-xs leading-relaxed'>
+                Send me your website URL and I'll send back a detailed performance, SEO, and UX
+                audit — completely free.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

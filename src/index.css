@@ -1,8 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 #root {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Case study image carousel (react-slick) — dark theme */
+.project-gallery .slick-dots {
+  bottom: 0;
+}
+.project-gallery .slick-dots li button:before {
+  color: rgba(255, 255, 255, 0.35);
+  opacity: 1;
+  font-size: 8px;
+}
+.project-gallery .slick-dots li.slick-active button:before {
+  color: #60a5fa;
+}
+.project-gallery .slick-prev,
+.project-gallery .slick-next {
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}
+.project-gallery .slick-prev:before,
+.project-gallery .slick-next:before {
+  font-size: 28px;
+  opacity: 0.85;
+  color: #60a5fa;
+}
+.project-gallery .slick-prev {
+  left: 4px;
+}
+.project-gallery .slick-next {
+  right: 4px;
+}
+.project-gallery .slick-prev:hover:before,
+.project-gallery .slick-next:hover:before {
+  opacity: 1;
+  color: #93c5fd;
 }

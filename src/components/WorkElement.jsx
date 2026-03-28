@@ -1,108 +1,304 @@
-import { FiExternalLink } from 'react-icons/fi';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
+import { FiExternalLink, FiMaximize2, FiMinimize2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { AiFillGithub } from 'react-icons/ai';
-import { i18n } from '../locale/i18n';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-const WorkElement = ({ img, alt, name, description, tools, link, code, reverse }) => {
-  return (
-    <>
-      {/* Mobile */}
-      <div className='group relative w-[92%] mx-auto flex flex-col justify-center items-center md:hidden'>
-        <div className='mx-[-1px] -z-10 absolute top-0 left-0 w-full '>
-          <img src={img} alt={alt} className='rounded w-full h-full' />
-          <div className='rounded absolute top-0 left-0 z-20 w-full h-full bg-[rgba(0,0,0,0.2)] group-hover:bg-[rgba(0,0,0,0.9)] group-active:bg-[rgba(0,0,0,0.9)] group-focus:bg-[rgba(0,0,0,0.9)] duration-500'></div>
+const gallerySliderSettings = {
+  dots: true,
+  infinite: true,
+  speed: 400,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: true,
+  adaptiveHeight: false,
+  accessibility: true,
+};
+
+const WorkElement = ({
+  img,
+  alt,
+  gallery,
+  name,
+  problem,
+  solution,
+  tools,
+  link,
+  code,
+  metric,
+  result,
+}) => {
+  const hasGallery = Array.isArray(gallery) && gallery.length > 0;
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const lightboxItems = useMemo(() => {
+    if (hasGallery && gallery.length) return gallery;
+    if (img) return [{ src: img, alt: alt || name || 'Project screenshot' }];
+    return [];
+  }, [hasGallery, gallery, img, alt, name]);
+
+  const openLightbox = useCallback((index) => {
+    if (lightboxItems.length === 0) return;
+    setLightboxIndex(Math.max(0, Math.min(index, lightboxItems.length - 1)));
+  }, [lightboxItems.length]);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+
+  const goPrev = useCallback(() => {
+    setLightboxIndex((i) => {
+      if (i === null || lightboxItems.length <= 1) return i;
+      return i > 0 ? i - 1 : lightboxItems.length - 1;
+    });
+  }, [lightboxItems.length]);
+
+  const goNext = useCallback(() => {
+    setLightboxIndex((i) => {
+      if (i === null || lightboxItems.length <= 1) return i;
+      return i < lightboxItems.length - 1 ? i + 1 : 0;
+    });
+  }, [lightboxItems.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return undefined;
+
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+        return;
+      }
+      if (lightboxItems.length <= 1) return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goPrev();
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goNext();
+      }
+    };
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [lightboxIndex, lightboxItems.length, closeLightbox, goPrev, goNext]);
+
+  const currentItem =
+    lightboxIndex !== null && lightboxItems[lightboxIndex]
+      ? lightboxItems[lightboxIndex]
+      : null;
+
+  const lightboxPortal =
+    currentItem &&
+    createPortal(
+      <div
+        className='fixed inset-0 z-[200] flex flex-col'
+        role='dialog'
+        aria-modal='true'
+        aria-label={`${name} — full size image`}>
+        <div
+          className='absolute inset-0 bg-black/95'
+          onClick={closeLightbox}
+          aria-hidden='true'
+        />
+        <div className='relative z-10 flex flex-col h-full min-h-0 pointer-events-none'>
+          <div className='flex items-center justify-between gap-3 px-4 py-3 shrink-0 pointer-events-auto border-b border-white/10 bg-black/60 backdrop-blur-sm'>
+            <p className='text-sm text-theme-white/80 truncate'>
+              <span className='font-semibold text-theme-white'>{name}</span>
+              {lightboxItems.length > 1 && (
+                <span className='text-theme-white/50 ml-2'>
+                  {lightboxIndex + 1} / {lightboxItems.length}
+                </span>
+              )}
+            </p>
+            <button
+              type='button'
+              onClick={closeLightbox}
+              className='flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-theme-white text-sm font-medium border border-white/15 transition-colors shrink-0'
+              aria-label='Minimize and return to project card'>
+              <FiMinimize2 size={18} aria-hidden />
+              Minimize
+            </button>
+          </div>
+
+          <div className='flex-1 flex items-center justify-center min-h-0 p-4 md:p-8 pointer-events-auto relative'>
+            {lightboxItems.length > 1 && (
+              <button
+                type='button'
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goPrev();
+                }}
+                className='absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 text-accent flex items-center justify-center transition-colors'
+                aria-label='Previous image'>
+                <FiChevronLeft size={22} />
+              </button>
+            )}
+            {lightboxItems.length > 1 && (
+              <button
+                type='button'
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goNext();
+                }}
+                className='absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 text-accent flex items-center justify-center transition-colors'
+                aria-label='Next image'>
+                <FiChevronRight size={22} />
+              </button>
+            )}
+            <img
+              src={currentItem.src}
+              alt={currentItem.alt || `${name} full size`}
+              className='max-w-full max-h-[calc(100vh-7rem)] w-auto h-auto object-contain shadow-2xl rounded-sm select-none'
+              draggable={false}
+            />
+          </div>
         </div>
-        <div className='mx-[1px] min-h-[450px] flex flex-col justify-center align-center'>
-          <div className='duration-500 h-[450px] hidden group-hover:flex group-active:flex group-focus:flex flex-col justify-between align-center'>
-            <h1 className='flex items-center justify-center bg-[rgba(0,0,0,0.6)] w-full h-[60px] text-2xl font-medium'>
-              {name}
-            </h1>
-            <p className='text-lg text-center mx-5'>{description}</p>
-            <div className='flex justify-center items-center flex-col'>
-              <div className='flex flex-col items-center'>
-                <h1 className='text-lg mb-1.5 font-medium'>
-                  {i18n.t('worksSection.workElement.tools')}
-                </h1>
-                <div className='flex justify-center items-center'>
-                  <div className='font-medium'>{tools}</div>
-                </div>
-              </div>
-              <div className='flex my-5'>
-                <a
-                  className='h-9 w-28 bg-theme-blue-50 hover:bg-theme-blue-100 active:bg-theme-blue-100 hover:text-white active:text-white rounded mx-1.5 flex items-center justify-around hover:-translate-y-[2px] duration-300'
-                  href={link}
-                  target='_blank'
-                  rel='noreferrer'>
-                  {i18n.t('worksSection.workElement.buttons.demo')} <FiExternalLink size={19} />
-                </a>
-                <a
-                  className='h-9 w-28 rounded mx-1.5 shadow-sm shadow-theme-white bg-theme-white text-theme-black font-bold  flex items-center justify-around hover:-translate-y-[2px] active:-translate-y-[2px] duration-300'
-                  href={code}
-                  target='_blank'
-                  rel='noreferrer'>
-                  {i18n.t('worksSection.workElement.buttons.code')} <AiFillGithub size={19} />
-                </a>
+      </div>,
+      document.body,
+    );
+
+  return (
+    <div className='bg-white/[0.04] border border-white/10 rounded-xl overflow-hidden mb-5 hover:border-accent/30 duration-300 group'>
+      {lightboxPortal}
+
+      <div className='flex flex-col md:flex-row'>
+        {/* Image(s) */}
+        <div className='md:w-[42%] overflow-hidden flex-shrink-0'>
+          {hasGallery ? (
+            <div className='project-gallery px-1 pb-10 pt-2 md:px-2 md:pb-10'>
+              <Slider {...gallerySliderSettings}>
+                {gallery.map((item, i) => (
+                  <div key={`${name}-shot-${i}`} className='px-1 outline-none'>
+                    <div className='relative overflow-hidden rounded-lg border border-white/10 bg-black/20 aspect-[4/3]'>
+                      <button
+                        type='button'
+                        onClick={() => openLightbox(i)}
+                        className='absolute inset-0 z-[1] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset'
+                        aria-label={`View ${item.alt || 'screenshot ' + (i + 1)} full screen`}>
+                        <span className='sr-only'>View full screen</span>
+                      </button>
+                      <img
+                        src={item.src}
+                        alt={item.alt || `${name} screenshot ${i + 1}`}
+                        className='w-full h-full object-cover object-top pointer-events-none'
+                      />
+                      <div className='absolute bottom-2 right-2 z-[2] pointer-events-none flex gap-2'>
+                        <span className='pointer-events-auto'>
+                          <button
+                            type='button'
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openLightbox(i);
+                            }}
+                            className='flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-black/75 hover:bg-black/90 border border-white/20 text-white text-xs font-semibold backdrop-blur-sm transition-colors shadow-lg'
+                            aria-label='Open full screen'>
+                            <FiMaximize2 size={14} aria-hidden />
+                            Full screen
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          ) : (
+            <div className='relative w-full h-52 md:h-full min-h-[13rem] md:min-h-[280px]'>
+              <button
+                type='button'
+                onClick={() => openLightbox(0)}
+                className='absolute inset-0 z-[1] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset rounded-none'
+                aria-label={`View ${alt || name} full screen`}>
+                <span className='sr-only'>View full screen</span>
+              </button>
+              <img
+                src={img}
+                alt={alt}
+                className='w-full h-full object-cover object-top group-hover:scale-[1.02] duration-500 pointer-events-none'
+              />
+              <div className='absolute bottom-3 right-3 z-[2]'>
+                <button
+                  type='button'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(0);
+                  }}
+                  className='flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-black/75 hover:bg-black/90 border border-white/20 text-white text-xs font-semibold backdrop-blur-sm transition-colors shadow-lg'
+                  aria-label='Open full screen'>
+                  <FiMaximize2 size={14} aria-hidden />
+                  Full screen
+                </button>
               </div>
             </div>
-          </div>
+          )}
         </div>
-      </div>
 
-      {/* Desktop */}
-      <div
-        className={`hidden md:flex ${
-          !reverse ? 'flex-row text-right' : 'flex-row-reverse text-left'
-        } w-full mb-28 last-of-type:mb-0 relative`}>
-        <div className='shadow-[0px_0px_16px_11px] shadow-[rgba(96,138,177,0.1)] flex-[50%] max-w-[430px] absolute'>
-          <img src={img} alt={alt} className='w-full h-full' />
-        </div>
-        <div className={`flex-[40%] flex flex-col z-[2] ${!reverse ? 'items-end' : 'items-start'}`}>
+        {/* Content */}
+        <div className='flex-1 p-6 md:p-8 flex flex-col justify-between'>
           <div>
-            <p className='italic xl:text-sm 2xl:text-base'>
-              {i18n.t('worksSection.workElement.featured')}
+            <p className='text-accent text-xs font-semibold tracking-widest uppercase mb-1'>
+              Featured Project
             </p>
-            <h1 className='xl:text-xl 2xl:text-2xl my-1.5 font-bold tracking-wide'>
-              <a href={link} rel='noreferrer' target='_blank'>
-                {name}
+            <h3 className='text-xl md:text-2xl font-bold text-theme-white mb-5'>{name}</h3>
+
+            <div className='space-y-4 mb-5'>
+              <div>
+                <span className='text-[10px] font-bold text-theme-white/40 uppercase tracking-widest'>
+                  Problem
+                </span>
+                <p className='text-sm text-theme-white/75 mt-1 leading-relaxed'>{problem}</p>
+              </div>
+              {solution && (
+                <div>
+                  <span className='text-[10px] font-bold text-theme-white/40 uppercase tracking-widest'>
+                    Solution
+                  </span>
+                  <p className='text-sm text-theme-white/75 mt-1 leading-relaxed'>{solution}</p>
+                </div>
+              )}
+            </div>
+
+            {metric && (
+              <div className='inline-flex items-center gap-2 bg-accent/10 border border-accent/25 rounded-full px-3.5 py-1.5 mb-5'>
+                <span className='text-accent font-bold text-sm'>{metric}</span>
+                {result && <span className='text-theme-white/55 text-xs'>{result}</span>}
+              </div>
+            )}
+
+            <p className='text-xs text-theme-white/45 font-medium tracking-wide'>{tools}</p>
+          </div>
+
+          <div className='flex flex-wrap gap-3 mt-6'>
+            {link && (
+              <a
+                href={link}
+                target='_blank'
+                rel='noreferrer'
+                className='h-9 px-5 bg-accent hover:bg-accent-dark text-white text-sm font-semibold rounded-lg flex items-center gap-2 duration-200'>
+                Live Demo <FiExternalLink size={14} />
               </a>
-            </h1>
-          </div>
-          <div
-            className={` bg-[rgba(44,42,46,0.95)] hover:bg-[rgba(44,42,46,0.90)] rounded py-4 px-[20px] my-2.5 flex w-[60%] ${
-              !reverse ? 'justify-end' : 'justify-start'
-            }`}>
-            {' '}
-            <a href={link} rel='noreferrer' target='_blank'>
-              <p className='xl:text-base 2xl:text-lg'>{description}</p>
-            </a>
-          </div>
-          <div className='flex'>
-            <div className='font-medium'>{tools}</div>
-          </div>
-          <div className='flex justify-between items-center mt-4 sm:w-[80px] xl:w-[264px]'>
-            <a
-              className='sm:h-9 sm:w-9 xl:w-32 flex items-center justify-center bg-theme-blue-50 hover:text-white active:text-white hover:bg-theme-blue-100 active:bg-theme-blue-100 sm:rounded-full xl:rounded hover:-translate-y-[2px] duration-300'
-              href={link}
-              target='_blank'
-              rel='noreferrer'>
-              <span className='sm:hidden xl:block'>
-                {i18n.t('worksSection.workElement.buttons.demo')}{' '}
-              </span>
-              <FiExternalLink size={20} className='xl:ml-1' />
-            </a>
-            <a
-              className='sm:h-9 sm:w-9 xl:w-32 flex items-center justify-center shadow-sm shadow-theme-white bg-theme-white text-theme-black font-bold sm:rounded-full xl:rounded hover:-translate-y-[2px] duration-300'
-              href={code}
-              target='_blank'
-              rel='noreferrer'>
-              <span className='sm:hidden xl:block'>
-                {i18n.t('worksSection.workElement.buttons.code')}{' '}
-              </span>
-              <AiFillGithub size={20} className='xl:ml-1' />
-            </a>
+            )}
+            {code && (
+              <a
+                href={code}
+                target='_blank'
+                rel='noreferrer'
+                className='h-9 px-5 border border-white/20 hover:border-accent hover:text-accent text-theme-white text-sm font-semibold rounded-lg flex items-center gap-2 duration-200'>
+                View Code <AiFillGithub size={14} />
+              </a>
+            )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

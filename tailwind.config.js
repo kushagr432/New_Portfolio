@@ -11,6 +11,8 @@ module.exports = {
         'theme-blue-50': 'rgba(96,138,177,0.7)',
         'theme-blue-100': 'rgba(96,138,177,0.8)',
         'theme-black': 'rgb(32, 32, 35)',
+        'accent': '#60A5FA',
+        'accent-dark': '#3B82F6',
       },
       keyframes: {
         travelOrbit: {

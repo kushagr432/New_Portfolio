@@ -1,59 +1,48 @@
-import SkillCard from './SkillCard';
-
-import { BsPlusLg, BsServer } from 'react-icons/bs';
-import { HiMinus } from 'react-icons/hi';
 import {
-  SiChakraui,
-  SiCss3,
-  SiExpress,
-  SiFirebase,
-  SiHtml5,
-  SiJavascript,
-  SiMongodb,
   SiReact,
-  SiSass,
+  SiDjango,
+  SiPython,
+  SiJavascript,
+  SiTypescript,
+  SiMongodb,
+  SiDocker,
+  SiGit,
   SiTailwindcss,
-  SiTypescript
+  SiPostgresql,
 } from 'react-icons/si';
+import { FaAws, FaNodeJs } from 'react-icons/fa';
 
-import { useState } from 'react';
-import { i18n } from '../locale/i18n';
+const techs = [
+  { Icon: SiReact, name: 'React', color: '#61DAFB' },
+  { Icon: SiDjango, name: 'Django', color: '#44B78B' },
+  { Icon: SiPython, name: 'Python', color: '#3776AB' },
+  { Icon: FaNodeJs, name: 'Node.js', color: '#339933' },
+  { Icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E' },
+  { Icon: SiTypescript, name: 'TypeScript', color: '#3178C6' },
+  { Icon: FaAws, name: 'AWS', color: '#FF9900' },
+  { Icon: SiDocker, name: 'Docker', color: '#2496ED' },
+  { Icon: SiPostgresql, name: 'PostgreSQL', color: '#4169E1' },
+  { Icon: SiMongodb, name: 'MongoDB', color: '#47A248' },
+  { Icon: SiTailwindcss, name: 'Tailwind CSS', color: '#38BDF8' },
+  { Icon: SiGit, name: 'Git', color: '#F05032' },
+];
 
 const Skills = () => {
-  const [active, setActive] = useState(false);
-  const showMore = () => {
-    setActive(!active);
-  };
-
   return (
-    <section name='skills' className='w-full pt-12 md:pt-20'>
-      <div className='max-w-[900px] mx-auto p-4 md:p-8'>
-        <div>
-          <h1 className='font-medium text-xl 2xl:text-2xl border-b-4 inline-block border-theme-white mb-4 pb-1'>
-            {i18n.t('skillsSection.sectionName')}
-          </h1>
+    <section name='skills' className='w-full pt-14 md:pt-20'>
+      <div className='max-w-[980px] mx-auto px-6 md:px-8'>
+        <p className='text-accent text-xs font-semibold tracking-widest uppercase mb-2'>Tools &amp; Tech</p>
+        <h2 className='text-2xl md:text-3xl font-bold text-theme-white mb-7'>Tech Stack</h2>
+        <div className='flex flex-wrap gap-3'>
+          {techs.map(({ Icon, name, color }) => (
+            <div
+              key={name}
+              className='flex items-center gap-2.5 bg-white/[0.04] border border-white/10 rounded-lg px-4 py-2.5 hover:border-accent/40 duration-200'>
+              <Icon size={17} style={{ color }} />
+              <span className='text-theme-white/80 text-sm font-medium'>{name}</span>
+            </div>
+          ))}
         </div>
-        <div className='w-full grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 text-center gap-5 pb-6 md:pb-0 md:pt-6'>
-          <SkillCard color='#61DAFB' icon={SiReact} name='React' />
-          <SkillCard color='#EFD81E' icon={SiJavascript} name='JavaScript' />
-          <SkillCard color='#146BBC' icon={SiTypescript} name='TypeScript' />
-          <SkillCard color='#DC4A29' icon={SiHtml5} name='HTML5' />
-          <SkillCard color='#376FB4' icon={SiCss3} name='CSS3' />
-          <SkillCard color='#954058' icon={SiExpress} name='Express' active={active} />
-          <SkillCard color='#00FF00' icon={SiMongodb} name='Mongo db' />
-          <SkillCard color='#C76494' icon={SiSass} name='Sass' active={active} />
-          <SkillCard color='#65CBCD' icon={SiChakraui} name='Chakra UI' active={active} />
-          <SkillCard color='#36B7F0' icon={SiTailwindcss} name='Tailwind' active={active} />
-          <SkillCard color='#EE800F' icon={SiFirebase} name='Firebase' active={active} />
-          <SkillCard color='#69DDB3' icon={BsServer} name='Restful API' active={active} />
-        
-        </div>
-        <button
-          className='sm:hidden w-36 h-11 flex justify-center items-center mx-auto rounded bg-transparent border-2 hover:text-white active:text-white hover:bg-theme-blue-50 active:bg-theme-blue-50 hover:border-theme-blue-50 active:border-theme-blue-50 duration-200 group font-medium'
-          onClick={showMore}>
-          {active ? `${i18n.t('skillsSection.showLess')}` : `${i18n.t('skillsSection.showMore')}`}
-          {active ? <HiMinus className='ml-1' /> : <BsPlusLg className='ml-1' />}
-        </button>
       </div>
     </section>
   );

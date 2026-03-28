@@ -1,145 +1,84 @@
-import toast from 'react-hot-toast';
 import Link from 'react-scroll/modules/components/Link';
-
-import { TypeAnimation } from 'react-type-animation';
-import { i18n } from '../locale/i18n';
-
-import Stars from './Stars';
-
-import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { FcDocument } from 'react-icons/fc';
-import { HiArrowNarrowRight, HiOutlineMail } from 'react-icons/hi';
-
-import { default as enResume, default as ptResume } from '../assets/docs/resume-kushagr.pdf';
-import ProfilePicture from '../assets/images/profile/me.jpg.jpg';
-
-// Language settings
-const CURRENT_KEY = localStorage.getItem('i18nextLng');
+import { HiOutlineMail, HiArrowNarrowRight } from 'react-icons/hi';
+import Stars from './Stars';
+import ProfilePicture from '../assets/images/profile/menew.jpeg';
 
 const Home = () => {
   const social = {
     linkedin: 'https://www.linkedin.com/in/kushagr-jain-40502621b/',
     github: 'https://github.com/kushagr432',
-    email: 'kushagr998@gmail.com',
-  };
-
-  const resumeLink = CURRENT_KEY === 'pt-BR' ? ptResume : enResume;
-
-  const downloadResume = () => {
-    toast(i18n.t('header.resume.downloadMessage'), {
-      icon: <FcDocument size={28} />,
-      duration: 6000,
-    });
-  };
-
-  const pictureStyle = {
-    background: `url(${ProfilePicture})`,
+    email: 'mailto:kushagr998@gmail.com',
   };
 
   return (
     <>
       <Stars />
       <section
-        className='w-full flex justify-center align-center flex-col pt-16 md:pt-20 min-h-screen lg:pb-16 relative bg-transparent shadow-lg shadow-[#282A3A]'
+        className='w-full flex justify-center items-center flex-col pt-20 min-h-screen relative bg-transparent'
         name='home'>
-        <div className='w-full max-w-[900px] flex flex-col justify-center mx-auto px-4 md:px-8'>
-          <div className='flex flex-col md:flex-row-reverse align-center justify-center'>
-            {/* Profile Picture */}
-            <div
-              className='w-56 h-56 md:w-80 md:h-80 border-2 md:border-[3px] animate-morph border-theme-white flex justify-center items-center m-auto md:ml-auto md:my-auto transition-all duration-[1s] bg-center bg-no-repeat bg-cover border-3 border-solid relative ease-in-out'
-              style={pictureStyle}></div>
-            <div>
-              {/* Introduction */}
-              <div className='flex flex-col md:flex-row items-start justify-between mb-6'>
-                <div className='mt-4 md:mt-0 mx-auto md:mx-0'>
-                  <h1 className="flex items-center gap-2 text-2xl sm:text-3xl 2xl:text-4xl font-bold after:content-[''] after:w-1.5 after:h-14 after:bg-theme-blue-100 after:animate-cursorBlink">
-                    {i18n.t('homeSection.intro')}
-                  </h1>
-                  <h2 className='text-base sm:text-lg mb-3'>{i18n.t('homeSection.welcome')}</h2>
-                  <div className='text-base sm:text-xl 2xl:text-2xl flex items-center justify-start md:mt-5'>
-                    <p>{i18n.t('homeSection.smallDescription')} </p>
-                    <span className='text-3xl sm:text-4xl 2xl:text-5xl text-theme-blue-50 ml-1 md:ml-2 md:mr-1'>
-                      [
-                    </span>
-                    <div className='text-lg md:text-xl 2xl:text-2xl font-medium'>
-                      <TypeAnimation
-                        cursor={false}
-                        sequence={[
-                          `${i18n.t('homeSection.animatedTexts.textOne')}`,
-                          3000,
-                          `${i18n.t('homeSection.animatedTexts.textTwo')}`,
-                          3000,
-                          `${i18n.t('homeSection.animatedTexts.textThree')}`,
-                          3000,
-                          `${i18n.t('homeSection.animatedTexts.textFour')}`,
-                          3000,
-                          `${i18n.t('homeSection.animatedTexts.textFive')}`,
-                          3000,
-                          `${i18n.t('homeSection.animatedTexts.textSix')}`,
-                          3000,
-                        ]}
-                        wrapper='span'
-                        speed='45'
-                        repeat={Infinity}
-                      />
-                    </div>
-                    <span className='text-3xl sm:text-4xl 2xl:text-5xl text-theme-blue-50 sm:ml-1'>
-                      ]
-                    </span>
-                  </div>
-                </div>
-              </div>
-              {/* Description */}
-              <p className='tracking-wide w-[274.63px] sm:w-[339.78px] md:w-[400px] max-w-[500px] text-base sm:text-lg 2xl:text-xl mx-auto'>
-                {i18n.t('homeSection.description')}
+        <div className='w-full max-w-[980px] flex flex-col justify-center mx-auto px-6 md:px-8 py-16 md:py-0'>
+          <div className='flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16'>
+
+            {/* Left: Text */}
+            <div className='flex-1 text-center md:text-left'>
+              <p className='text-accent text-xs md:text-sm font-semibold tracking-widest uppercase mb-4'>
+                Full-Stack Developer &amp; DevOps Engineer
               </p>
-              {/* Social Links */}
-              <div className='lg:hidden mt-6 mx-auto md:mx-0 w-[265px] sm:w-[328.56px]'>
-                <ul className='flex justify-between items-center'>
-                  <li className='p-2 bg-[#2867B2] rounded'>
-                    <a href={social.linkedin} target='_blank' rel='noreferrer'>
-                      <FaLinkedin size={30} />
-                    </a>
-                  </li>
-                  <li className='p-2 bg-[#1B1F23] rounded'>
-                    <a href={social.github} target='_blank' rel='noreferrer'>
-                      <FaGithub size={28} />
-                    </a>
-                  </li>
-                  <li className='p-2 bg-[#e22211] rounded'>
-                    <a href={social.email}>
-                      <HiOutlineMail size={28} />
-                    </a>
-                  </li>
-                  <li className='p-2 bg-[#4E535E] rounded'>
-                    <a
-                      href={resumeLink}
-                      download={i18n.t('header.resume.downloadName')}
-                      rel='noreferrer'
-                      target='_blank'
-                      onClick={downloadResume}>
-                      <BsFillPersonLinesFill size={28} />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              {/* Buttons */}
-              <div className='md:mx-0 w-full flex justify-center md:justify-start items-center mt-6 text-theme-white text-sm sm:text-base'>
-                <Link to='works' smooth={true} duration={600}>
-                  <button className='w-28 sm:w-32 2xl:w-32 h-12 flex justify-center items-center rounded bg-transparent mr-4 md:mr-7 border-2 hover:text-white active:text-white hover:bg-theme-blue-50 active:bg-theme-blue-50 hover:border-theme-blue-50 active:border-theme-blue-50 duration-200 group font-medium'>
-                    {i18n.t('homeSection.buttons.work')}
-                    <span className='group-hover:rotate-90 group-active:rotate-90 duration-300'>
-                      <HiArrowNarrowRight className='ml-1' />
-                    </span>
-                  </button>
-                </Link>
+              <h1 className='text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-tight mb-5 text-theme-white'>
+                I help startups{' '}
+                <span className='text-accent'>build &amp; deploy</span>{' '}
+                scalable web apps with zero downtime
+              </h1>
+              <p className='text-theme-blue-100 text-base md:text-lg font-medium mb-9 tracking-wide'>
+                React&nbsp;&nbsp;·&nbsp;&nbsp;Django&nbsp;&nbsp;·&nbsp;&nbsp;AWS&nbsp;&nbsp;·&nbsp;&nbsp;CI/CD
+              </p>
+
+              {/* CTAs */}
+              <div className='flex flex-col sm:flex-row gap-3 justify-center md:justify-start mb-10'>
                 <Link to='contact' smooth={true} duration={600}>
-                  <button className='w-24 2xl:w-28 h-12 flex justify-center items-center rounded bg-theme-blue-50 hover:bg-theme-blue-100 active:bg-theme-blue-100 hover:text-white active:text-white duration-200 font-medium'>
-                    {i18n.t('homeSection.buttons.hire')}
+                  <button className='w-full sm:w-auto px-7 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-sm md:text-base duration-200 shadow-lg'>
+                    Get Free Website Audit
+                  </button>
+                </Link>
+                <Link to='works' smooth={true} duration={600}>
+                  <button className='w-full sm:w-auto px-7 py-3.5 border border-white/20 hover:border-accent hover:text-accent text-theme-white font-semibold rounded-lg text-sm md:text-base duration-200 flex items-center justify-center gap-2 group'>
+                    View Case Studies
+                    <HiArrowNarrowRight className='group-hover:translate-x-1 duration-200' />
                   </button>
                 </Link>
               </div>
+
+              {/* Social */}
+              <div className='flex items-center gap-5 justify-center md:justify-start'>
+                <a
+                  href={social.linkedin}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='text-theme-white/50 hover:text-accent duration-200'>
+                  <FaLinkedin size={20} />
+                </a>
+                <a
+                  href={social.github}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='text-theme-white/50 hover:text-accent duration-200'>
+                  <FaGithub size={20} />
+                </a>
+                <a
+                  href={social.email}
+                  className='text-theme-white/50 hover:text-accent duration-200'>
+                  <HiOutlineMail size={21} />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Photo */}
+            <div className='flex-shrink-0'>
+              <div
+                className='w-52 h-52 md:w-[280px] md:h-[280px] rounded-2xl border border-accent/20 bg-center bg-no-repeat bg-cover shadow-2xl'
+                style={{ backgroundImage: `url(${ProfilePicture})` }}
+              />
             </div>
           </div>
         </div>
