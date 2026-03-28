@@ -27,8 +27,7 @@ const WorkElement = ({
   tools,
   link,
   code,
-  metric,
-  result,
+  results,
 }) => {
   const hasGallery = Array.isArray(gallery) && gallery.length > 0;
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -266,14 +265,24 @@ const WorkElement = ({
               )}
             </div>
 
-            {metric && (
-              <div className='inline-flex items-center gap-2 bg-accent/10 border border-accent/25 rounded-full px-3.5 py-1.5 mb-5'>
-                <span className='text-accent font-bold text-sm'>{metric}</span>
-                {result && <span className='text-theme-white/55 text-xs'>{result}</span>}
+            {Array.isArray(results) && results.length > 0 && (
+              <div className='mb-5'>
+                <span className='text-[10px] font-bold text-theme-white/40 uppercase tracking-widest block mb-2'>
+                  Results
+                </span>
+                <div className='flex flex-wrap gap-2'>
+                  {results.map((r) => (
+                    <span
+                      key={r}
+                      className='inline-flex items-center bg-accent/10 border border-accent/25 text-accent text-xs font-semibold rounded-full px-3 py-1.5'>
+                      {r}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
 
-            <p className='text-xs text-theme-white/45 font-medium tracking-wide'>{tools}</p>
+            <p className='text-xs text-theme-white/40 font-medium tracking-wide'>{tools}</p>
           </div>
 
           <div className='flex flex-wrap gap-3 mt-6'>

@@ -14,7 +14,7 @@ import WorkElement from './WorkElement';
 
 const projects = [
   {
-    name: 'Manivra',
+    name: 'Manivra Jewels',
     gallery: [
       { src: manivra1, alt: 'Manivra — luxury jewellery storefront' },
       { src: manivra2, alt: 'Manivra — admin panel and catalogue' },
@@ -22,14 +22,13 @@ const projects = [
       { src: manivra4, alt: 'Manivra — site experience' },
     ],
     problem:
-      'A luxury jewellery brand needed a refined online presence to showcase collections and drive sales, plus a reliable way to manage products and content without constant developer handoffs.',
+      'A luxury jewellery brand needed a polished online storefront to showcase collections and drive sales — plus a reliable admin panel so the team could manage products and content without calling a developer every time.',
     solution:
-      'Delivered end-to-end: a polished customer-facing jewellery website and a secure admin panel for catalogue, content, and day-to-day operations — shipped and hosted on Vercel.',
-    tools: 'React · Full-stack · Admin panel · Vercel',
+      'Delivered end-to-end: React storefront with a custom-built admin panel for full catalogue, inventory, and content management. Deployed on Vercel with CI/CD so updates ship in seconds.',
+    tools: 'React · Node.js · Admin Panel · Vercel · CI/CD',
     link: 'https://manivera.vercel.app/',
     code: '',
-    metric: 'End-to-end',
-    result: '· Storefront + admin panel',
+    results: ['🛍️ End-to-end delivery', '⚙️ Full admin panel', '🚀 Live on Vercel', '🔁 CI/CD automated'],
   },
   {
     name: 'Atmosly',
@@ -41,56 +40,52 @@ const projects = [
       { src: atmosly5, alt: 'Atmosly — product screenshot 5' },
     ],
     problem:
-      'Engineering teams needed a single self-service platform to provision infrastructure, run pipelines, and ship releases — without stitching together ad-hoc scripts and cloud consoles.',
+      'Engineering teams needed a single self-service platform to provision infrastructure, run pipelines, and deploy releases — without stitching together ad-hoc scripts and separate cloud consoles.',
     solution:
-      'Worked on a production SaaS that combines a Django backend, React web app, and Go services for orchestration and performance-critical paths — giving users one place to manage DevOps workflows end to end.',
-    tools: 'Django · React · Go',
+      'Built a production SaaS combining Django backend, React web app, and Go microservices for orchestration. Users manage their full DevOps workflow — from infra provisioning to deployments — in one place.',
+    tools: 'Django · React · Go · AWS · Docker',
     link: 'https://app.atmosly.com/signin',
     code: '',
-    metric: 'Self-service DevOps',
-    result: '· Django + React + Go in production',
+    results: ['☁️ Self-service DevOps SaaS', '⚡ Django + React + Go', '🔁 Automated pipelines', '📦 Production infra'],
   },
   {
     img: plantDesktopImg,
     alt: 'Plant Selling MERN Platform',
     name: 'Plant Selling Platform',
     problem:
-      'A client needed a complete e-commerce solution to sell plants online with user authentication, product listings, and cart management — deployed and live.',
+      'Client needed a full e-commerce solution to sell plants online — user auth, product listings, cart, and checkout — deployed and reliably live.',
     solution:
-      'Built a full MERN stack platform: React frontend, Express REST API, MongoDB database, JWT auth, and deployed to Vercel with a CI/CD workflow.',
+      'Built full MERN stack: React frontend, Express REST API, MongoDB, JWT auth, and deployed to Vercel with a CI/CD workflow. Zero manual deploys from day one.',
     tools: 'React · Express.js · MongoDB · Node.js · JWT',
     link: 'https://plant-selling-mern-xf49.vercel.app/',
     code: 'https://github.com/kushagr432/plant-selling-mern',
-    metric: '1.3s Load Time',
-    result: '· Full-stack MERN on Vercel',
+    results: ['⚡ 1.3s load time', '🔐 JWT auth', '🚀 Deployed on Vercel', '🔁 CI/CD pipeline'],
   },
   {
     img: tofuDesktopImg,
     alt: 'TOFU AR/VR Landing Page',
     name: 'TOFU AR/VR Landing Page',
     problem:
-      'An AR/VR startup needed a high-converting landing page to attract investors and early adopters — with strong visuals and fast performance.',
+      'An AR/VR startup needed a high-converting landing page to attract investors and early adopters — with immersive visuals and fast performance scores.',
     solution:
-      'Crafted a premium, mobile-first landing page in React with MUI and Tailwind. Optimized assets, lazy loading, and semantic HTML for top Lighthouse scores.',
+      'Crafted a premium mobile-first landing page in React with Tailwind + MUI. Optimised assets, lazy loading, and semantic HTML to hit 90+ Lighthouse without sacrificing design.',
     tools: 'React · Tailwind CSS · Material UI · Figma',
     link: 'https://tofu-app.vercel.app/',
     code: '',
-    metric: '92 Lighthouse Score',
-    result: '· Performance + Accessibility',
+    results: ['🚀 92 Lighthouse Score', '📱 Mobile-first', '♿ Fully accessible', '⚡ Sub-2s load'],
   },
   {
     img: NoirDesktopImg,
     alt: 'Noir Barbershop Website',
-    name: 'Noir Barbershop Website',
+    name: 'Noir Barbershop',
     problem:
-      'A premium barbershop needed a sophisticated online presence to showcase services and attract high-end clients — without any CMS or dependencies.',
+      'A premium barbershop needed a sophisticated online presence to showcase services and attract high-end clients — delivered fast, no CMS overhead.',
     solution:
-      'Built a sleek, zero-dependency static site with smooth CSS animations, scroll effects, and a clear booking CTA — delivered in under a week.',
+      'Built a sleek zero-dependency static site: smooth CSS scroll effects, clear booking CTA, and pixel-perfect responsive layout — shipped in under a week.',
     tools: 'HTML5 · CSS3 · Vanilla JavaScript',
     link: 'https://noir-barbearia.vercel.app/',
     code: '',
-    metric: '< 2s Load Time',
-    result: '· Zero dependencies · Fast delivery',
+    results: ['⚡ < 2s load time', '🎨 Zero dependencies', '📅 Booking CTA', '✅ Delivered in < 1 week'],
   },
 ];
 
@@ -101,7 +96,7 @@ const Works = () => {
         <p className='text-accent text-xs font-semibold tracking-widest uppercase mb-2'>Portfolio</p>
         <h2 className='text-2xl md:text-3xl font-bold text-theme-white mb-3'>Case Studies</h2>
         <p className='text-theme-white/55 text-base mb-10 max-w-xl leading-relaxed'>
-          Real projects with measurable outcomes — from initial problem to shipped production solution.
+          Real projects. Real results. Each one shipped with measurable outcomes.
         </p>
         <div>
           {projects.map((project) => (

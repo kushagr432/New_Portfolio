@@ -23,52 +23,59 @@ const Home = () => {
             {/* Left: Text */}
             <div className='flex-1 text-center md:text-left'>
               <p className='text-accent text-xs md:text-sm font-semibold tracking-widest uppercase mb-4'>
-                Full-Stack Developer &amp; DevOps Engineer
+                Full-Stack Developer &amp; DevOps Engineer · India
               </p>
-              <h1 className='text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-tight mb-5 text-theme-white'>
+
+              <h1 className='text-3xl sm:text-4xl lg:text-[2.85rem] font-extrabold leading-[1.15] mb-5 text-theme-white'>
                 I help startups{' '}
                 <span className='text-accent'>build &amp; deploy</span>{' '}
-                scalable web apps with zero downtime
+                fast, scalable web apps on AWS
               </h1>
-              <p className='text-theme-blue-100 text-base md:text-lg font-medium mb-9 tracking-wide'>
-                React&nbsp;&nbsp;·&nbsp;&nbsp;Django&nbsp;&nbsp;·&nbsp;&nbsp;AWS&nbsp;&nbsp;·&nbsp;&nbsp;CI/CD
+
+              <p className='text-theme-white/65 text-base md:text-lg leading-relaxed mb-9 max-w-lg mx-auto md:mx-0'>
+                Reduce load time, eliminate downtime, and ship faster —
+                with <span className='text-theme-white/90 font-medium'>React, Django &amp; CI/CD</span> pipelines
+                that actually work.
               </p>
 
               {/* CTAs */}
               <div className='flex flex-col sm:flex-row gap-3 justify-center md:justify-start mb-10'>
                 <Link to='contact' smooth={true} duration={600}>
-                  <button className='w-full sm:w-auto px-7 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-sm md:text-base duration-200 shadow-lg'>
+                  <button className='w-full sm:w-auto px-7 py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg text-sm md:text-base duration-200 shadow-lg shadow-accent/20'>
                     Get Free Website Audit
                   </button>
                 </Link>
                 <Link to='works' smooth={true} duration={600}>
                   <button className='w-full sm:w-auto px-7 py-3.5 border border-white/20 hover:border-accent hover:text-accent text-theme-white font-semibold rounded-lg text-sm md:text-base duration-200 flex items-center justify-center gap-2 group'>
-                    View Case Studies
+                    View My Work
                     <HiArrowNarrowRight className='group-hover:translate-x-1 duration-200' />
                   </button>
                 </Link>
               </div>
 
+              {/* Trust signal */}
+              <div className='flex flex-wrap items-center gap-x-5 gap-y-2 justify-center md:justify-start mb-7'>
+                {['10+ Projects Shipped', '92 Avg. Lighthouse Score', 'Zero-Downtime Deploys'].map((item) => (
+                  <span key={item} className='flex items-center gap-1.5 text-xs text-theme-white/45'>
+                    <span className='w-1 h-1 rounded-full bg-accent/60' />
+                    {item}
+                  </span>
+                ))}
+              </div>
+
               {/* Social */}
               <div className='flex items-center gap-5 justify-center md:justify-start'>
-                <a
-                  href={social.linkedin}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='text-theme-white/50 hover:text-accent duration-200'>
-                  <FaLinkedin size={20} />
+                <a href={social.linkedin} target='_blank' rel='noreferrer'
+                  className='text-theme-white/40 hover:text-accent duration-200'>
+                  <FaLinkedin size={19} />
                 </a>
-                <a
-                  href={social.github}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='text-theme-white/50 hover:text-accent duration-200'>
-                  <FaGithub size={20} />
+                <a href={social.github} target='_blank' rel='noreferrer'
+                  className='text-theme-white/40 hover:text-accent duration-200'>
+                  <FaGithub size={19} />
                 </a>
-                <a
-                  href={social.email}
-                  className='text-theme-white/50 hover:text-accent duration-200'>
-                  <HiOutlineMail size={21} />
+                <a href={social.email}
+                  className='text-theme-white/40 hover:text-accent duration-200'>
+                  <HiOutlineMail size={20} />
                 </a>
               </div>
             </div>
@@ -76,7 +83,7 @@ const Home = () => {
             {/* Right: Photo */}
             <div className='flex-shrink-0'>
               <div
-                className='w-52 h-52 md:w-[280px] md:h-[280px] rounded-2xl border border-accent/20 bg-center bg-no-repeat bg-cover shadow-2xl'
+                className='w-52 h-52 md:w-[280px] md:h-[280px] rounded-2xl border border-accent/20 bg-center bg-no-repeat bg-cover shadow-2xl shadow-black/50'
                 style={{ backgroundImage: `url(${ProfilePicture})` }}
               />
             </div>
